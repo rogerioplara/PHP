@@ -19,7 +19,7 @@ array_unshift($nomes, "marcos");
 //retirar um valor do final do array
 $resultado = array_pop($nomes); // $resultado = "manuela"
 
-//retitar um valor do inicio do array
+//retirar um valor do inicio do array
 $resultad = array_shift($nomes);
 
 //eliminar um determinado elemento pelo indice
