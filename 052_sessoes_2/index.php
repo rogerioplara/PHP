@@ -1,5 +1,6 @@
 <?php
-
+session_name('minha_sessao');
+session_set_cookie_params(10); //número de segundos
 //todos os scripts devem ter o início de sessão antes de qualquer output do PHP
 session_start();
 
