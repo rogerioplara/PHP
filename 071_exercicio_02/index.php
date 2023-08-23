@@ -7,7 +7,7 @@ $textos = [];
 $textos_teste = [];
 $zeros = [];
 
-$dados = file('dados.dat');
+$dados = file('dados.dat'); //NÃO DEVE SER UTILIZADO DESSA FORMA, POIS A FUNÇÃO FILE() CARREGA TODOS OS DADOS PARA O ARRAY, PODENDO SER EXTREMAMENTE PREJUDICIAL PARA A MEMÓRIA EM CASO DE ARQUIVOS MUITO GRANDES.
 
 foreach($dados as $dado){
     if(is_numeric($dado) and $dado > 0){
@@ -38,7 +38,7 @@ echo '<hr>';
 echo '<h3>Textos Alfanuméricos</h3>';
 print_r($textos);
 
-//outra forma de resolver (professor)
+//outra forma de resolver (professor) -> mais indicada e segura
 $file = fopen("dados.dat", 'r');
 while(!feof($file)){
     $linha = fgets($file);
