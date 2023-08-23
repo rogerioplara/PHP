@@ -3,20 +3,27 @@
 $erro = ""; // variáveis de controle de erro e sucesso
 $sucesso = "";
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){ // verifico se existe um request do tipo post
-    
-    if(empty($_POST['text_valor'])){ // se o request do tipo post text_valor estiver vazio, gera erro e adiciona a variavel
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{ // verifico se existe um request do tipo post
+
+    if (empty($_POST['text_valor']))
+    { // se o request do tipo post text_valor estiver vazio, gera erro e adiciona a variavel
         $erro = "Campo de texto vazio.";
-    } else { // se o request do tipo post text_valor não for vazio, segue
+    }
+    else
+    { // se o request do tipo post text_valor não for vazio, segue
 
         $valor = $_POST['text_valor']; // adiciona o post do form na variável $valor
 
-        if(is_numeric($valor)){ // checa se é numérico e cria/append o arquivo
+        if (is_numeric($valor))
+        { // checa se é numérico e cria/append o arquivo
             $file = fopen('dados_numericos.txt', 'a'); //modo 'a' significa append
             fputs($file, $valor . PHP_EOL);
             fclose($file);
             $sucesso = "Valor numérico adicionado com sucesso.";
-        } elseif(is_string($valor)){ // checa se é string e cria/append o arquivo
+        }
+        elseif (is_string($valor))
+        { // checa se é string e cria/append o arquivo
             $file = fopen('dados_string.txt', 'a'); //modo 'a' significa append
             fputs($file, $valor . PHP_EOL);
             fclose($file);
