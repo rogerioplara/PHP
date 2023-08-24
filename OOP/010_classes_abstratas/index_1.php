@@ -7,11 +7,9 @@ Um outro conceito muito importante na POO é o conceito de
 Classes abstratas.
 
 Uma classe abstrata, com métodos abstratos, implica que a classe
-tenha métodos que estão declarado, mas cuja funcionalidade vai ter 
+tenha métodos que estão declarados mas sua funcionalidade vai ter 
 que ser implementada nas classes derivadas
 */
-
-use Pessoa as GlobalPessoa;
 
 abstract class Pessoa
 {
