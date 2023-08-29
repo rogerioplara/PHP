@@ -7,12 +7,12 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP DATABASE IF EXISTS `php_pdo_contactos`;
-CREATE DATABASE IF NOT EXISTS `php_pdo_contactos` /*!40100 DEFAULT CHARACTER SET latin1 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `php_pdo_contactos`;
+DROP DATABASE IF EXISTS `php_pdo_contatos`;
+CREATE DATABASE IF NOT EXISTS `php_pdo_contatos` /*!40100 DEFAULT CHARACTER SET latin1 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `php_pdo_contatos`;
 
-DROP TABLE IF EXISTS `contactos`;
-CREATE TABLE IF NOT EXISTS `contactos` (
+DROP TABLE IF EXISTS `contatos`;
+CREATE TABLE IF NOT EXISTS `contatos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) DEFAULT NULL,
   `telefone` varchar(12) DEFAULT NULL,

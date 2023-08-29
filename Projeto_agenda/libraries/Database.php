@@ -58,7 +58,6 @@ class Database
                 $db->execute();
             }
             $results = $db->fetchAll($this->_return_type);
-
         } catch (PDOException $err) {
 
             // close connection
@@ -82,7 +81,7 @@ class Database
 
         // connection
         $connection = new PDO(
-            'mysql:host=' . $this->_host . ';dbname=' . $this->_database. ';charset=utf8',
+            'mysql:host=' . $this->_host . ';dbname=' . $this->_database . ';charset=utf8',
             $this->_username,
             $this->_password,
             array(PDO::ATTR_PERSISTENT => true)
@@ -106,7 +105,6 @@ class Database
 
             // finish transaction
             $connection->commit();
-
         } catch (PDOException $err) {
 
             // undo all sql operations on error

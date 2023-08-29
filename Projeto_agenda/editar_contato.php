@@ -7,19 +7,19 @@ require_once('header.php');
 
         <div class="card p-4">
 
-            <form action="adicionar_contacto.php" method="post">
-                <p class="text-center"><strong>NOVO CONTACTO</strong></p>
+            <form action="editar_contato.php" method="post">
+                <p class="text-center"><strong>EDITAR CONTATO</strong></p>
                 <div class="mb-3">
                     <label for="text_nome" class="form-label">Nome</label>
-                    <input type="text" name="text_nome" id="text_nome" class="form-control" minlength="3" maxlength="50" required>
+                    <input type="text" name="text_nome" id="text_nome" class="form-control" minlength="3" maxlength="50" required value=" ####### ">
                 </div>
                 <div class="mb-3">
                     <label for="text_telefone" class="form-label">Telefone</label>
-                    <input type="text" name="text_telefone" id="text_telefone" class="form-control" minlength="3" maxlength="12" required>
+                    <input type="text" name="text_telefone" id="text_telefone" class="form-control" minlength="3" maxlength="12" required value=" ####### ">
                 </div>
                 <div class="text-center">
                     <a href="index.php" class="btn btn-outline-dark">Cancelar</a>
-                    <input type="submit" value="Guardar" class="btn btn-outline-dark">
+                    <input type="submit" value="Atualizar" class="btn btn-outline-dark">
                 </div>
             </form>
 

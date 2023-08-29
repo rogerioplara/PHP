@@ -8,7 +8,8 @@ require_once('header.php');
 
         <form action="index.php" method="post">
             <div class="row">
-                <div class="col-auto"><input type="text" class="form-control" name="text_search" id="text_search" minlength="3" maxlength="20" required></div>
+                <div class="col-auto"><input type="text" class="form-control" name="text_search" id="text_search"
+                        minlength="3" maxlength="20" required></div>
                 <div class="col-auto"><input type="submit" class="btn btn-outline-dark" value="Procurar"></div>
                 <div class="col-auto"><a href="index.php" class="btn btn-outline-dark">Ver tudo</a></div>
             </div>
@@ -43,7 +44,7 @@ require_once('header.php');
                     <td>[nome]</td>
                     <td>[telefone]</td>
                     <td class="text-center"><a href="editar_contato.php">Editar</a></td>
-                    <td class="text-center"><a href="eliminar_contato.php">Eliminar</a></td>
+                    <td class="text-center"><a href="eliminar_contato.php">Apagar</a></td>
                 </tr>
             </tbody>
         </table>
