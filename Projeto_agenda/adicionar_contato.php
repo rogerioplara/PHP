@@ -1,5 +1,46 @@
 <?php
+
+use sys4soft\Database;
+
 require_once('header.php');
+require_once('config.php');
+require_once('libraries/Database.php');
+
+$erro = null;
+
+//check if there was a post
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //instanciação da base de dados
+    $database = new Database(MYSQL_CONFIG);
+
+    //get post data
+    $nome = $_POST['text_nome'];
+    $telefone = $_POST['text_telefone'];
+
+    //check if phone is unique
+    $params = [
+        ':telefone' => $telefone
+    ];
+    $results = $database->execute_query("SELECT id FROM contatos WHERE telefone = :telefone", $params);
+
+    if ($results->affected_rows != 0) {
+        //there is already another contact with the same phone number
+        $erro = 'Já existe um contato com o mesmo número de telefone';
+    } else {
+        //store the contact information
+        $params = [
+            ':nome' => $nome,
+            ':telefone' => $telefone,
+        ];
+        $results = $database->execute_non_query("INSERT INTO contatos VALUES(0, :nome, :telefone, NOW(), NOW())", $params);
+
+        // debug
+        // print_r($results);
+
+        header('Location: index.php');
+    }
+}
+
 ?>
 
 <div class="row justify-content-center">
@@ -19,16 +60,18 @@ require_once('header.php');
                 </div>
                 <div class="text-center">
                     <a href="index.php" class="btn btn-outline-dark">Cancelar</a>
-                    <input type="submit" value="Guardar" class="btn btn-outline-dark">
+                    <input type="submit" value="Salvar" class="btn btn-outline-dark">
                 </div>
             </form>
 
         </div>
 
         <!-- error message -->
-        <div class="mt-3 alert alert-danger p-2 text-center">
-            mensagem de erro aqui...
-        </div>
+        <?php if (!empty($erro)) : ?>
+            <div class="mt-3 alert alert-danger p-2 text-center">
+                <?= $erro ?>
+            </div>
+        <?php endif; ?>
 
     </div>
 </div>

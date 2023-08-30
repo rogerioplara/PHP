@@ -1,5 +1,39 @@
 <?php
+
+use sys4soft\Database;
+
 require_once('header.php');
+
+//include necessary files
+require_once('config.php');
+require_once('libraries/Database.php');
+
+$contacts = null;
+$total_contacts = 0;
+$search = null;
+$database = new Database(MYSQL_CONFIG);
+
+//check if there was a post from search
+//busco se o botão de post foi utilizado -> ou foi uma pesquisa específica ou um ver todos -> a específica só vai ser passada se houver conteúdo -> caso não tenha conteúdo ficará bloquado
+//dessa forma, o if faz a parametrização da pesquisa, ou seja, pega meu valor de texto passado no post e passa para a query
+//caso contrário, a requisição 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //search for results
+    $search = $_POST['text_search'];
+    $params = [
+        ':search' => '%' . $search . '%',
+    ];
+    $results = $database->execute_query(
+        "SELECT * FROM contatos WHERE nome LIKE :search OR telefone LIKE :search ORDER BY id DESC",
+        $params
+    );
+} else {
+    $results = $database->execute_query("SELECT * FROM contatos ORDER BY id DESC");
+}
+
+$contacts = $results->results;
+$total_contacts = $results->affected_rows;
+
 ?>
 
 <!-- search & add new -->
@@ -26,8 +60,10 @@ require_once('header.php');
 <div class="row">
     <div class="col">
 
+        <?php if ($total_contacts == 0) : ?>
         <!-- no results -->
         <p class="text-center opacity-75 mt-3">Não foram encontrados contatos registados.</p>
+        <?php else : ?>
 
         <!-- widh results -->
         <table class="table table-sm table-striped table-bordered">
@@ -40,21 +76,26 @@ require_once('header.php');
                 </tr>
             </thead>
             <tbody>
+                <?php foreach ($contacts as $contact) : ?>
                 <tr>
-                    <td>[nome]</td>
-                    <td>[telefone]</td>
-                    <td class="text-center"><a href="editar_contato.php">Editar</a></td>
-                    <td class="text-center"><a href="eliminar_contato.php">Apagar</a></td>
+                    <td><?= ucwords($contact->nome) ?></td>
+                    <td><?= $contact->telefone ?></td>
+                    <td class="text-center"><a href="editar_contato.php?id=<?= $contact->id ?>">Editar</a></td>
+                    <td class="text-center"><a href="eliminar_contato.php?id=<?= $contact->id ?>">Apagar</a></td>
                 </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
 
-        <!-- total results & delete all-->
+        <!-- total results -->
         <div class="row">
             <div class="col">
-                <p>Total: <strong>0</strong></p>
+                <p>Total: <strong><?= $total_contacts ?></strong></p>
             </div>
         </div>
+
+        <?php endif; ?>
+
 
     </div>
 </div>
