@@ -1,4 +1,4 @@
-# PHP PDO - Lista de Contatos
+# PHP PDO - Agenda
 
 Desenvolver uma aplicação PHP com acesso a base de dados MySQL que permite efetuar a gestão de  contatos com base em NOME e TELEFONE.
 
