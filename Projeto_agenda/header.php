@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP PDO CONTATOS</title>
+    <title>PHP PDO Agenda</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +26,7 @@
             <div class="col bg-dark text-white p-2">
                 <div class="d-flex align-items-center">
                     <img src="assets/favicon.png" alt="PHP PDO contatos" width="30px" class="img-fluid me-3">
-                    <h3 class="m-0 p-0">CONTATOS</h3>
+                    <h3 class="m-0 p-0">AGENDA</h3>
                 </div>
             </div>
         </div>
