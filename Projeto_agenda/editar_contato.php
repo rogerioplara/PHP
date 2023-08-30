@@ -25,6 +25,7 @@ $results = $database->execute_query("SELECT * FROM contatos WHERE id = :id", $pa
 // echo '<pre>';
 // // debug
 // print_r($results);
+// die('1');
 // echo '</pre>';
 
 //primeiro e único registro a partir da query
@@ -33,7 +34,7 @@ $contato = $results->results[0];
 //check if there was a post
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = $_POST['text_nome'];
-    $telefone = $_POST['text_telefon'];
+    $telefone = $_POST['text_telefone'];
 
     $params = [
         ':id' => $id,
@@ -41,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ];
 
     //check if there is another contact with the same number
-    $results = $database->execute_query("SELECT id FROM contatos WHERE id <> :id AND telefone = :telefone", $params);
+    $results = $database->execute_query("SELECT id FROM contatos WHERE id != :id AND telefone = :telefone", $params);
 
     if ($results->affected_rows != 0) {
         //another contact was found with the same phone number
@@ -53,10 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ':nome' => $nome,
             ':telefone' => $telefone,
         ];
-        $results = $database->execute_non_query(
-            "UPDATE contacts SET nome = :nome, telefone = :telefone, updated_at = NOW() WHERE id = :id",
-            $params
-        );
+        $results = $database->execute_non_query("UPDATE contatos SET nome = :nome, telefone = :telefone, updated_at = NOW() WHERE id = :id", $params);
 
         header('Location: index.php');
     }
@@ -69,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="card p-4">
 
-            <form action="editar_contato.php" method="post">
+            <form action="editar_contato.php?id=<?= $id ?>" method="post">
                 <p class="text-center"><strong>EDITAR CONTATO</strong></p>
                 <div class="mb-3">
                     <label for="text_nome" class="form-label">Nome</label>
