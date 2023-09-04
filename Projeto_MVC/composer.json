@@ -15,6 +15,9 @@
             ],
             "bng\\System\\": [
                 "app/system"
+            ],
+            "bng\\Models\\": [
+                "app/models"
             ]
         },
         "files": [

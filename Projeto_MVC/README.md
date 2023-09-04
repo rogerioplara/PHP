@@ -53,3 +53,8 @@ O Administrador é responsável por gerir seus funcionários.
 - Ter registro de <i>logs</i>;
 - Gerar relatórios em PDF;
 - Analisar os funcionários mais ativos;
+
+### Desenvolvimento de <i>Framework</i> MVC próprio
+Foi feito o desenvolvimento de um <i>Framework</i> MVC próprio para fins educativos, onde é possível observar vários comportamentos de uma aplicação deste tipo, e observar também como são feitas as conexões e separações.
+<br>
+Adicionalmente, esse <i>Framework</i> é básico, não tem funcionalidades mais avançadas e não deve ser utilizado em produção.
