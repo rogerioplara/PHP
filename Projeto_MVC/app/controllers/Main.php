@@ -15,7 +15,7 @@ class Main extends BaseController
         // $this->view('login_frm');
 
         // esqueci-me da password (formulário)
-        $this->view('reset_password_frm');
+        // $this->view('reset_password_frm');
 
         // esqueci-me da password - email enviado
         // $this->view('reset_password_email_sent');
