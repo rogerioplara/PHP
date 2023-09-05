@@ -10,29 +10,30 @@
 
                 <div class="row justify-content-center">
                     <div class="col-8">
-                        <form action="#" method="post">
+                        <form action="?ct=main&mt=login_submit" method="post" novalidate>
                             <div class="mb-3">
                                 <label for="text_username" class="form-label">Usuário</label>
-                                <input type="email" name="text_username" id="text_username" value=""
-                                    class="form-control" required>
+                                <input type="email" name="text_username" id="text_username" value="" class="form-control" required>
                             </div>
                             <div class="mb-3">
                                 <label for="text_password" class="form-label">Senha</label>
-                                <input type="password" name="text_password" id="text_password" class="form-control"
-                                    required>
+                                <input type="password" name="text_password" id="text_password" class="form-control" required>
                             </div>
                             <div class="mb-3 text-center">
-                                <button type="submit" class="btn btn-secondary px-4">Entrar<i
-                                        class="fa-solid fa-right-to-bracket ms-2"></i></button>
+                                <button type="submit" class="btn btn-secondary px-4">Entrar<i class="fa-solid fa-right-to-bracket ms-2"></i></button>
                             </div>
 
                             <div class="mb-3 text-center">
                                 <a href="#">Esqueci a senha!</a>
                             </div>
 
-                            <div class="alert alert-danger p-2 text-center">
-                                [mensagem de erro]
-                            </div>
+                            <?php if (!empty($validation_errors)) : ?>
+                                <div class="alert alert-danger p-2 text-center">
+                                    <?php foreach ($validation_errors as $error) : ?>
+                                        <div><?= $error ?></div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
                         </form>
                     </div>
                 </div>

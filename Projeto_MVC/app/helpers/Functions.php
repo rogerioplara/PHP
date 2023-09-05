@@ -18,3 +18,9 @@ function printData($data, $die = true)
         die('<br>FIM</br>');
     }
 }
+
+// check if there is an ative session
+function check_session()
+{
+    return isset($_SESSION['user']);
+}
