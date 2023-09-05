@@ -9,7 +9,7 @@ class Main extends BaseController
 {
     public function index()
     {
-        //check if there is no active users in session
+        //verifica se não tem ninguém conectado na sessão, se tiver, continua a execução e mostra o Olá mundo abaixo -> vai mostrar o painel inicial após a implementação
         if (!check_session()) {
             $this->login_frm();
             return;
@@ -25,7 +25,7 @@ class Main extends BaseController
     // ------------------------
     public function login_frm()
     {
-        // check if there is already an user in the session
+        //checa se tem alguém conectado na sessão
         if (check_session()) {
             $this->index();
             return;
@@ -90,7 +90,20 @@ class Main extends BaseController
             return;
         }
 
-
-        echo $username . '<br>' . $password;
+        //crio um novo model do agente -> faço a chamada do check_login e adiciono na variável result;
+        //caso a variável result tiver o status true, retorna OK, caso contrário NOK
+        $model = new Agents();
+        $result = $model->check_login($username, $password);
+        if ($result['status']) {
+            echo 'OK';
+        } else {
+            echo 'NOK';
+        }
     }
 }
+
+/*
+admin@bng.com - Aa123456
+agent1@bng.com - Aa123456
+agent2@bng.com - Aa123456
+*/
