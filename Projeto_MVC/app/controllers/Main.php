@@ -38,6 +38,12 @@ class Main extends BaseController
             unset($_SESSION['validation_errors']);
         }
 
+        // Verifica se houve um login inválido
+        if (!empty($_SESSION['server_error'])) {
+            $data['server_error'] = $_SESSION['server_error'];
+            unset($_SESSION['server_error']);
+        }
+
         //display login form
         $this->view('layouts/html_header');
         $this->view('login_frm', $data);
@@ -94,11 +100,20 @@ class Main extends BaseController
         //caso a variável result tiver o status true, retorna OK, caso contrário NOK
         $model = new Agents();
         $result = $model->check_login($username, $password);
-        if ($result['status']) {
-            echo 'OK';
-        } else {
-            echo 'NOK';
+        if (!$result['status']) {
+            // login invalido
+            $_SESSION['server_error'] = 'Login inválido';
+            $this->login_frm();
+            return;
         }
+
+        // carregar os dados do usuário na sessão
+        $results = $model->get_user_data($username);
+
+        // adicionar o usuário à sessão
+        $_SESSION['user'] = $results['data'];
+
+        echo 'OK';
     }
 }
 
